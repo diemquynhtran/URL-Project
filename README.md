@@ -19,19 +19,27 @@
     //Output: [100 2] [100 2]
 ```
 # MAP
-## Syntax
+- Syntax
 ```Golang
     var listMap map[string]int = map[string]int{...}
-Or:
+    //Or:
     listMap := make(map[string]int)
-String/int are type of key/value
+    //String/int are type of key/value
 
 ```
 - Check element:
 ```Golang
     val, ok := listMap[key]
+    //if key isn't exist ok=false
 ```
-if key isn't exist ok=false
+- Kiểu tham chiếu
+```Golang
+    var x []int = []int{1,2}
+    y := x
+    y[0] = 100
+    fmt.Println(x,y)
+    //Output: [100 2] [100 2]
+```
 # FUNCTION
 - defer dùng để trì hoãn câu lệnh đến cuối cùng mới thực hiện (trước return)
 
