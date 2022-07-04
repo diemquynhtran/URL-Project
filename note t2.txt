@@ -1,0 +1,16 @@
+api:
+
+node id: 10 bit -> cho nguoi dung setup
+
+sequence id: 12 bit -> 
+
+
+
+
+POST /localhost:8000/api/id
+
+response:
+{
+    "status": "OK"
+    "data": "3824553481209909248"
+}

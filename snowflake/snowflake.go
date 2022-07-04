@@ -1,4 +1,4 @@
-package snowflake
+package snowfake
 
 import (
 	"fmt"
@@ -6,76 +6,63 @@ import (
 	"time"
 )
 
-var (
-	UNUSED_BITS uint8 = 1
-	EPOCH_BITS uint8 = 41
-	NODE_ID_BITS uint8 = 10
-	SEQUENCE_BITS uint8 = 12
-
-	timeShift uint8 = SEQUENCE_BITS + NODE_ID_BITS
-	nodeShift uint8 = SEQUENCE_BITS 
-	seqShift  uint8 = 0
-
-	timeMask uint64 = maxTimeBit << uint64(timeShift)
-	nodeMask uint64 = maxNodeId << uint64(nodeShift)
-	seqMask  uint64 = maxSequence << uint64(seqShift)
-
-	epochTime uint64 = 1288834974657
-	maxTimeBit uint64 = (1 << EPOCH_BITS) - 1
-	maxNodeId uint64 = (1 << NODE_ID_BITS) - 1
-	maxSequence uint64 = (1 << SEQUENCE_BITS) - 1
-	id int64
-
-
-)
-
+// Snowfake is an object to generate the ID
 type Snowfake struct {
-	mutex *sync.Mutex
+	mu *sync.Mutex
+
 	node uint64
 	time uint64
 	seq  uint64
 }
 
-func CreateNewNode(nodeID uint64) (*Snowfake, error)  {
-	if (nodeID >= maxNodeId) {
-		return nil, fmt.Errorf("NodeID too big")
+// New creates new snowfake instance based on config.
+// It returns an error when nodeID is greater than or equal to 2^nodeBits
+func CreateNode(nodeID uint64) (*Snowfake, error) {
+
+	if nodeID >= maxNode {
+		return nil, fmt.Errorf("nodeID should less than %d", maxNode)
 	}
 
 	s := &Snowfake{}
-	s.mutex = &sync.Mutex{}
+
+	s.mu = &sync.Mutex{}
 	s.node = nodeID
 	s.time = 0
 	s.seq = 0
+
 	return s, nil
 }
 
-func (s *Snowfake) Generate() uint64 {
-	s.mutex.Lock()
-	defer s.mutex.Unlock()
-	curTime := s.currentTime()
-	if s.time  == curTime {
+// GenerateID generates new ID in 64bit format.
+// GenerateID doesn't guarantee uniqueness if you use small seqBits
+// since it will probably collide at the same timestamp.
+//
+// Rule of thumb: 10 seqBits guarantees 2^10 unique IDs per second without collision.
+func (s *Snowfake) GenerateID() uint64 {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	t := s.now()
+	if s.time == t {
 		s.seq++
-		s.seq &= maxSequence
+		s.seq &= 1<<seqBits - 1
 	} else {
 		s.seq = 0
 	}
-	s.time = curTime
+
+	s.time = t
+
 	r := (s.time << timeShift) & timeMask
 	r |= (s.node << nodeShift) & nodeMask
 	r |= (s.seq << seqShift) & seqMask
 
 	return r
-
 }
 
-func (s *Snowfake) currentTime() uint64 {
+func (s *Snowfake) now() uint64 {
 
 	t := uint64(time.Now().Unix())
-	t -= epochTime
+	t -= epoch
 
-	return (1<<EPOCH_BITS - 1) & t
+	return (1<<timeBits - 1) & t
 }
-
-
-
-

@@ -1,12 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"learning-go/snowflake"
+	"learning-go/controllers"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-    node,_ := snowflake.CreateNewNode(1)
-    id := node.Generate()
-    fmt.Print(id)
+	router := gin.Default()
+
+	router.GET("/api/id", controllers.CreateID)
+
+	router.Run(":3000")
 }
