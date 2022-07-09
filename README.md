@@ -23,6 +23,7 @@ Slices không có bất kì dữ liệu nào. Chúng là các tham chiếu đế
     //Tạo slides sử dụng make
     func make([]T, len, cap)
 ```
+- len: chiều dài slice (số phần tử hiện có trong slice). Cap: dung lượng của slide, khi dung lượng của slice = len, thì khi thêm bất kì phần tử nào vào slice thì cap += phần tử x 2
 # MAP
 - Syntax
 ```Golang
@@ -48,6 +49,7 @@ Slices không có bất kì dữ liệu nào. Chúng là các tham chiếu đế
 # FUNCTION
 - defer dùng để trì hoãn câu lệnh đến cuối cùng mới thực hiện (trước return)
 - Variadic Functions: https://golangbot.com/variadic-functions/ 
+- Closure: truy cập một biến bên ngoài phạm vi của nó
 # POINTER
 Biến a chứa địa chỉ của biến b thì a được gọi là con trỏ của b
 ```Golang

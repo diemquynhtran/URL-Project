@@ -7,9 +7,5 @@ import (
 )
 
 func main() {
-	router := gin.Default()
-
-	router.GET("/api/id", controllers.CreateID)
-
-	router.Run(":3000")
+	
 }

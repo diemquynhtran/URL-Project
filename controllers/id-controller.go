@@ -9,7 +9,7 @@ import (
 )
 
 func CreateID(ctx *gin.Context) {
-	snowfake.SetEpoch(1577836800) // timestamp start from 01/01/2020 @ 12:00am (UTC)
+	snowfake.SetEpoch(1577836800) //timestamp
 	snowfake.SetNodeBits(10)       // reserve 2^10 machine numbers
 	snowfake.SetSeqBits(12)        // 2^12 unique ID per second
 	_ = snowfake.Init()           // must be called to instantiate new config
