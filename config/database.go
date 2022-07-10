@@ -1,38 +1,33 @@
-package database
+package config
 
 import (
 	"fmt"
-	"learning-go/models"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-const (
-	DB_USERNAME = "root"
-	DB_PASSWORD = "quynh"
-	DB_NAME     = "shortenId"
-	DB_HOST     = "localhost"
-	DB_PORT     = "3306"
-)
+const DB_USERNAME = "root"
+const DB_PASSWORD = "quynh"
+const DB_NAME = "urldb"
+const DB_HOST = "localhost"
+const DB_PORT = "3306"
 
 var Db *gorm.DB
-
 func InitDb() *gorm.DB {
-	Db = connectDb()
+	Db = connectDB()
 	return Db
 }
 
-func connectDb() *gorm.DB {
+func connectDB() (*gorm.DB) {
 	var err error
 	dsn := DB_USERNAME +":"+ DB_PASSWORD +"@tcp"+ "(" + DB_HOST + ":" + DB_PORT +")/" + DB_NAME + "?" + "parseTime=true&loc=Local"
+	fmt.Println("dsn : ", dsn)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		fmt.Println("Error connecting to database, error: %v", err)
+		fmt.Printf("Error connecting to database : error=%v", err)
 		return nil
 	}
 
-	db.AutoMigrate(&models.Url{})
 	return db
 }

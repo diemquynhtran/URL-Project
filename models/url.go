@@ -1,9 +1,20 @@
 package models
 
-//import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
-type Url struct {
-	LongURL     string `json:"longUrl"`
-	ShortURL    string `json:"shortUrl" gorm:"UNIQUE"`
-	SnowflakeID uint64 `json:"id" gorm:"primary_key;UNIQUE"`
+func GetAllUrl(db *gorm.DB, url *[]Url) (err error) {
+	if err = db.Find(url).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+//CreateUrl ... Insert New data
+func CreateUrl(db *gorm.DB,url *Url) (err error) {
+	if err = db.Create(url).Error; err != nil {
+		return err
+	}
+	return nil
 }
