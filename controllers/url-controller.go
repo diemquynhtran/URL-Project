@@ -4,35 +4,19 @@ import (
 	"fmt"
 	"learning-go/models"
 	"net/http"
-	"learning-go/config"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
-type UrlRepo struct {
-	Db *gorm.DB
-}
 
-func New() *UrlRepo {
-	db := config.InitDb()
-	db.AutoMigrate(&models.Url{})
-	return &UrlRepo{Db: db}
-}
-
-
+// /:short
 func (repository *UrlRepo) GetURL(c *gin.Context)  {
-	var url []models.Url
-	err := models.GetAllUrl(repository.Db, &url)
-	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, url)
-	}	
+	var url models.Url
+	url = models.GetUrl(repository.Db, &url, c.Param("short"))
+	c.Redirect(http.StatusMovedPermanently, url.LongURL)
 }
-
+// /url
 func (repository *UrlRepo) CreateUrl(c *gin.Context) {
 	var url models.Url
-	c.BindJSON(&url)
-	err := models.CreateUrl(repository.Db, &url)
+	err := models.CreateUrl(repository.Db, &url, c.Query("long"))
 	if err != nil {
 		fmt.Println(err.Error())
 		c.AbortWithStatus(http.StatusNotFound)

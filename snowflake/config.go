@@ -1,4 +1,4 @@
-package snowfake
+package snowflake
 
 import "fmt"
 

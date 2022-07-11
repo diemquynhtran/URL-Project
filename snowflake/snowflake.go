@@ -1,4 +1,4 @@
-package snowfake
+package snowflake
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ type Snowfake struct {
 	seq  uint64
 }
 
-// New creates new snowfake instance based on config.
+// New creates new snowflake instance based on config.
 // It returns an error when nodeID is greater than or equal to 2^nodeBits
 func CreateNode(nodeID uint64) (*Snowfake, error) {
 
@@ -33,11 +33,6 @@ func CreateNode(nodeID uint64) (*Snowfake, error) {
 	return s, nil
 }
 
-// GenerateID generates new ID in 64bit format.
-// GenerateID doesn't guarantee uniqueness if you use small seqBits
-// since it will probably collide at the same timestamp.
-//
-// Rule of thumb: 10 seqBits guarantees 2^10 unique IDs per second without collision.
 func (s *Snowfake) GenerateID() uint64 {
 	s.mu.Lock()
 	defer s.mu.Unlock()
