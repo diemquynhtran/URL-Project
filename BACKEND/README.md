@@ -1,4 +1,4 @@
-# PACKET
+# PACKAGE
 ## fmt
 # STRING
  https://techmaster.vn/posts/34999/series-golang-co-ban-phan-14-kieu-du-lieu-string

@@ -11,7 +11,7 @@ import (
 func (repository *UrlRepo) GetURL(c *gin.Context)  {
 	var url models.Url
 	url = models.GetUrl(repository.Db, &url, c.Param("short"))
-	c.Redirect(http.StatusMovedPermanently, url.LongURL)
+	c.Redirect(302, url.LongURL)
 }
 // /url
 func (repository *UrlRepo) CreateUrl(c *gin.Context) {
