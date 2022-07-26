@@ -31,7 +31,6 @@ func Encode(num uint64) string {
 		// append chars
 		b = append([]byte{CharacterSet[int(r)]}, b...)
 	}
-
 	return string(b)
 }
 
@@ -50,7 +49,6 @@ func Decode(s string) (int, error) {
 		// calculate
 		r += pos * int(math.Pow(float64(Base), float64(pow)))
 	}
-
 	return int(r), nil
 }
 

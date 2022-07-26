@@ -28,7 +28,7 @@ func init() {
 	SetEpoch(1577836800) // epoch start from 01/01/2020 @ 12:00am (UTC)
 	SetNodeBits(10)
 	SetSeqBits(12)
-
+	
 	_ = Init()
 }
 

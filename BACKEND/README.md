@@ -78,3 +78,6 @@ type bien string
 
 # GOROUTINE
 
+# CORS
+Pre-flight request là một loại CORS request, được gửi khi có những request tác động đến database như POST, PUT, DELETE,... Đầu tiên, trình duyệt sẽ gửi một request với phương thức OPTION tới resource của domain trước khi gửi request chính nhằm để thăm dò xem request chính có được phía server hỗ trợ hoặc request này có hợp lệ hay không. Ngoài ra trong trường hợp bạn thêm những custom header vào trong request thì việc gửi một pre-flight request trước cũng là cần thiết
+Vì thế trình duyệt phải có cơ chế để phân biệt JavaScript của nguồn nào thì được access vào resource của nguồn nào

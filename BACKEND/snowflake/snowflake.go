@@ -18,11 +18,9 @@ type Snowfake struct {
 // New creates new snowflake instance based on config.
 // It returns an error when nodeID is greater than or equal to 2^nodeBits
 func CreateNode(nodeID uint64) (*Snowfake, error) {
-
 	if nodeID >= maxNode {
 		return nil, fmt.Errorf("nodeID should less than %d", maxNode)
 	}
-
 	s := &Snowfake{}
 
 	s.mu = &sync.Mutex{}

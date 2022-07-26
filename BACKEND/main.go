@@ -7,6 +7,5 @@ import (
 
 func main() {
 	r := routes.InitRouter()
-	//r.Use(cors.Default())
 	_ = r.Run(":8080")
 }
