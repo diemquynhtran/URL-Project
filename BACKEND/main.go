@@ -1,7 +1,7 @@
 package main
 
 import (
-	"learning-go/routes"
+	"learning-go/route"
 
 )
 

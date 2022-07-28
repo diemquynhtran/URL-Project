@@ -4,7 +4,10 @@ go 1.18
 
 require github.com/rs/cors/wrapper/gin v0.0.0-20220619195839-da52b0701de5
 
+require github.com/mashingan/smapping v0.1.17 // indirect
+
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-contrib/cors v1.4.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect

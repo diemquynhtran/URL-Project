@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"learning-go/entity"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -33,6 +34,7 @@ func connectDB() *gorm.DB {
 		return nil
 	}
 	fmt.Println("Connect database successful!!!")
+	db.AutoMigrate(&entity.Url{}, &entity.User{})
 	return db
 }
 func CloseDB(db *gorm.DB) {
