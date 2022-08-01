@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"learning-go/entity"
 	"log"
 
@@ -21,7 +22,7 @@ type userConnection struct {
 	connection *gorm.DB
 }
 
-func NewUserRepository(db *gorm.DB) UserRepository {
+func NewUSerRepository(db *gorm.DB) UserRepository {
 	return &userConnection{
 		connection: db,
 	}
@@ -34,16 +35,27 @@ func (db *userConnection) InsertUser(user entity.User) entity.User {
 }
 
 func (db *userConnection) UpdateUser(user entity.User) entity.User {
+	if user.Password != "" {
+		user.Password = hashAndSalt([]byte(user.Password))
+	} else {
+		var tempUser entity.User
+		db.connection.Find(&tempUser, user.ID) //select from users where id =user.id
+		fmt.Println(tempUser)
+		user.Password = tempUser.Password
+		//user.Email = tempUser.Email
+	}
+	fmt.Println(user.Email)
+	db.connection.Save(&user)
 	return user
 }
 
 func (db *userConnection) VerifyCredential(email string, password string) interface{} {
 	var user entity.User
 	res := db.connection.Where("email = ?", email).Take(&user)
-	if res.Error != nil {
-		return nil
+	if res.Error == nil {
+		return user
 	}
-	return user
+	return nil
 }
 
 func (db *userConnection) IsDuplicateEmail(email string) (tx *gorm.DB) {
@@ -58,15 +70,16 @@ func (db *userConnection) FindByEmail(email string) entity.User {
 }
 
 func (db *userConnection) ProfileUser(userId string) entity.User {
-	var u entity.User
-	return u
+	var user entity.User
+	db.connection.Preload("Books").Preload("Books.User").Find(&user, userId)
+	return user
 }
 
 func hashAndSalt(pwd []byte) string {
 	hash, err := bcrypt.GenerateFromPassword(pwd, bcrypt.MinCost)
 	if err != nil {
-		log.Panicln(err)
-		panic("Failed to hash password")
+		log.Println(err)
+		panic("Failed to hash a password")	
 	}
 	return string(hash)
 }

@@ -20,9 +20,10 @@ myForm.addEventListener('submit', async (e) => {
                 'Content-Type': 'application/json'
             }
         })
-        let data = await res.json()
-        localStorage.setItem('shortUrl',data.short)
-        localStorage.setItem('longUrl',data.long)
+        let result = await res.json()
+        console.log(result.data)
+        localStorage.setItem('shortUrl',result.data.short)
+        localStorage.setItem('longUrl',result.data.long)
         window.location = './output.html'
     } catch (err) {
         console.log(err)
