@@ -1,3 +1,7 @@
+if (localStorage.getItem('token') == null) {
+    window.location = './login.html'
+}
+
 let output = document.querySelector('#shortenurl')
 let longBox = document.querySelector('#longBox')
 

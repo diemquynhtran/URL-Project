@@ -1,0 +1,103 @@
+@import url(https://fonts.googleapis.com/css?family=Asap:400,700|Lato:400,700,900|Source+Sans+Pro:400,700&display=swap);
+
+body {
+    margin: 0;
+    background: #f9f9f9;
+    font: 14px arial, tahoma;
+    color: black;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration:  overline;
+}
+
+
+
+li {
+    font: 16px "source sans pro", arial;
+    color: #484848;
+    line-height: 1.5;
+    text-align: left
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+    background: rgb(52, 154, 73)
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 16px 20px
+}
+
+nav ul li a {
+    color: #fff
+}
+
+td a {
+    color: black;
+
+}
+td a:hover {
+    text-decoration:underline wavy rgb(47, 149, 61) 4px;
+
+}
+
+
+table {
+    width: 70%;  
+
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    border: 1.5px solid #72d2a4;
+}
+th {
+    text-align: left;
+}
+
+
+
+
+@media all and (max-width:499px) {
+    .ad {
+        width: 320px;
+        height: 100px
+    }
+}
+
+@media all and (min-width:500px) and (max-width:769px) {
+    .ad {
+        width: 468px;
+        height: 60px
+    }
+}
+
+@media all and (min-width:770px) and (max-width:999px) {
+    .ad {
+        width: 728px;
+        height: 90px
+    }
+}
+
+@media all and (min-width:1000px) {
+    .ad {
+        width: 970px;
+        height: 90px
+    }
+}
+
+
+

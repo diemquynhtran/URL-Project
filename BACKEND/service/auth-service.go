@@ -10,6 +10,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+//AuthService is a contract about something that this service can do
 type AuthService interface {
 	VerifyCredential(email string, password string) interface{}
 	CreateUser(user dto.RegisterDTO) entity.User
@@ -21,17 +22,18 @@ type authService struct {
 	userRepository repository.UserRepository
 }
 
-func NewAuthService(userRepo repository.UserRepository) AuthService {
+//NewAuthService creates a new instance of AuthService
+func NewAuthService(userRep repository.UserRepository) AuthService {
 	return &authService{
-		userRepository: userRepo,
+		userRepository: userRep,
 	}
 }
 
-func (service *authService) VerifyCredential(email string, password string) interface{}{
+func (service *authService) VerifyCredential(email string, password string) interface{} {
 	res := service.userRepository.VerifyCredential(email, password)
 	if v, ok := res.(entity.User); ok {
-		comparePassword := comparePassword(v.Password, []byte(password))
-		if v.Email == email && comparePassword {
+		comparedPassword := comparePassword(v.Password, []byte(password))
+		if v.Email == email && comparedPassword {
 			return res
 		}
 		return false
@@ -48,17 +50,19 @@ func (service *authService) CreateUser(user dto.RegisterDTO) entity.User {
 	res := service.userRepository.InsertUser(userToCreate)
 	return res
 }
+
 func (service *authService) FindByEmail(email string) entity.User {
 	return service.userRepository.FindByEmail(email)
 }
+
 func (service *authService) IsDuplicateEmail(email string) bool {
 	res := service.userRepository.IsDuplicateEmail(email)
 	return !(res.Error == nil)
 }
 
-func comparePassword(hashedPwd string, plainPwd []byte) bool {
+func comparePassword(hashedPwd string, plainPassword []byte) bool {
 	byteHash := []byte(hashedPwd)
-	err := bcrypt.CompareHashAndPassword(byteHash, plainPwd)
+	err := bcrypt.CompareHashAndPassword(byteHash, plainPassword)
 	if err != nil {
 		log.Println(err)
 		return false

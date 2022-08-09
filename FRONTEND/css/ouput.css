@@ -35,7 +35,7 @@ p {
 }
 
 a {
-    color: #006cff;
+    color: rgb(52, 154, 73);
     text-decoration: none
 }
 
@@ -153,7 +153,7 @@ input[type=submit] {
 
 .colorbutton {
     display: inline-block;
-    background: #2c87c5;
+    background: rgb(52, 154, 73);
     font: bold 17px lato, arial;
     color: #fff;
     padding: 16px 26px;
@@ -188,7 +188,7 @@ header #logo {
 
 header a.logo {
     font: 900 49px asap, arial;
-    color: #0186da;
+    color: rgb(52, 154, 73);
     letter-spacing: -1px;
     text-shadow: 0 2px 2px #ddd;
     word-wrap: break-word
@@ -299,7 +299,7 @@ section .squarebox {
     padding: 10px 16px;
     font: bold 17px lato, arial;
     color: #fff;
-    background-color: #2c87c5;
+    background-color: rgb(52, 154, 73);
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -374,7 +374,7 @@ section#emailbox h2 {
     padding: 10px 16px;
     font: bold 17px lato, arial;
     color: #fff;
-    background-color: #2c87c5;
+    background-color: rgb(52, 154, 73);
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -394,7 +394,7 @@ footer {
     color: #eee;
     background: #333;
     width: 100%;
-    border-top: 5px solid #00a0db;
+    border-top: 5px solid rgb(52, 154, 73);
     padding: 20px 0 100px;
     line-height: 1.5
 }
@@ -414,7 +414,7 @@ footer ul li {
 }
 
 footer ul li a {
-    color: #0089ff
+    color: rgb(52, 154, 73)
 }
 
 html {
@@ -471,7 +471,7 @@ input[name=submit] {
     padding: 0 16px;
     font: normal 16px lato, arial;
     color: #fff;
-    background-color: #2c87c5;
+    background-color: rgb(52, 154, 73);
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -524,7 +524,7 @@ input[name=submit] {
     font: 14px lato, arial;
     color: #fff;
     text-align: center;
-    background-color: #3b5998;
+    background-color:rgb(52, 154, 73);
     cursor: pointer;
     border-radius: 2px;
     display: inline-block;
@@ -656,4 +656,10 @@ div.mg_addad1059121 img {
         width: 970px;
         height: 90px
     }
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(52, 154, 73);
 }

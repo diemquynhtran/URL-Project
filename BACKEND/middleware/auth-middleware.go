@@ -3,31 +3,23 @@ package middleware
 import (
 	"learning-go/helper"
 	"learning-go/service"
-	"log"
 	"net/http"
-
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
+//AuthorizeJWT validates the token user given, return 401 if not valid
 func AuthorizeJWT(jwtService service.JWTService) gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		authHeader := ctx.GetHeader("Authorization")
+	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
 		if authHeader == "" {
-			reponse := helper.BuildErrorResponse("Failed to process request", "No token found", nil)
-			ctx.AbortWithStatusJSON(http.StatusBadRequest, reponse)
+			response := helper.BuildErrorResponse("Failed to process request", "No token found", nil)
+			c.AbortWithStatusJSON(http.StatusBadRequest, response)
 			return
 		}
 		token, err := jwtService.ValidateToken(authHeader)
-		if token.Valid {
-			claims := token.Claims.(jwt.MapClaims)
-			log.Println("Claim[user_id]: ", claims["user_id"])
-			log.Println("Claim[issuer] :", claims["issuer"])
-
-		} else {
-			log.Println(err)
+		if !token.Valid { 
 			response := helper.BuildErrorResponse("Token is not valid", err.Error(), nil)
-			ctx.AbortWithStatusJSON(http.StatusUnauthorized, response)
+			c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		}
 	}
 }

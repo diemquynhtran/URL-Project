@@ -7,8 +7,8 @@
     <meta name="description"
         content="ShortURL is a url shortener to reduce a long link. Use our tool to shorten links and then share them, in addition you can monitor traffic statistics.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="shortcut icon" href="">
     <meta property="og:title" content="ShortURL - URL Shortener">
     <meta property="og:url" content="https://www.shorturl.at/">
     <meta property="og:type" content="website">
@@ -16,9 +16,32 @@
 </head>
 
 <body>
+    <section id="navbarr">
+        <nav class="navbar navbar-expand-custom navbar-mainbg">
+                <ul class="navbar-nav">
+                    <div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html"><i class="fas fa-tachometer-alt"></i>Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./output.html"><i class="far fa-address-book"></i>ShortedUrl</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html"><i class="far fa-clone"></i>About me</a>
+                    </li>
+                    </div>
+                    <div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.html"><i class="far fa-calendar-alt"></i>Logout</a>
+                    </li>
+                    </div>
+                </ul>
+        </nav>
+    </section>
     <header>
         <div id="logo"><a href="./index.html" class="logo">Short URL</a></div>
     </header>
+    
     <main>
         <section id="urlbox">
             <h1>Paste the URL to be shortened</h1>
@@ -40,7 +63,7 @@
                 $9/month.</p>
             <a href="https://httpslink.com/b7vm" class="colorbutton">Go Premium</a>
             <p class="boxtextcenter"><span class="textsmall aligncenter"><a href="https://httpslink.com/q6ps"
-                        class="textsmall">Sign up free at <img src="img/rebrandly-logo.svg" width="80"
+                        class="textsmall">Sign up free at <img src="../image/cat2.png" width="30"
                             alt="URL Shortener"></a></span></p>
         </section>
         <section id="content">
@@ -60,33 +83,33 @@
         <div id="box">
             <div id="row">
                 <div id="column">
-                    <div class="icon"><img src="img/icon-like.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Easy</h3>
                     <p class="aligncenter">ShortURL is easy and fast, enter the long link to get your shortened link</p>
                 </div>
                 <div id="column">
-                    <div class="icon"><img src="img/icon-url.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Shortened</h3>
                     <p class="aligncenter">Use any link, no matter what size, ShortURL always shortens</p>
                 </div>
                 <div id="column">
-                    <div class="icon"><img src="img/icon-secure.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Secure</h3>
                     <p class="aligncenter">It is fast and secure, our service have HTTPS protocol and data encryption
                     </p>
                 </div>
                 <div id="column">
-                    <div class="icon"><img src="img/icon-statistics.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Statistics</h3>
                     <p class="aligncenter">Check the amount of clicks that your shortened url received</p>
                 </div>
                 <div id="column">
-                    <div class="icon"><img src="img/icon-unique.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Reliable</h3>
                     <p class="aligncenter">All links that try to disseminate spam, viruses and malware are deleted</p>
                 </div>
                 <div id="column">
-                    <div class="icon"><img src="img/icon-responsive.png"></div>
+                    <div class="icon"><img src="../image/cat.png"></div>
                     <h3 class="aligncenter">Devices</h3>
                     <p class="aligncenter">Compatible with smartphones, tablets and desktop</p>
                 </div>
@@ -111,7 +134,7 @@
             </ul>
         </div>
     </footer>
-    <script src="./index.js" type="module"></script>
+    <script src="../js/index.js" type="module"></script>
 </body>
 
 </html>
